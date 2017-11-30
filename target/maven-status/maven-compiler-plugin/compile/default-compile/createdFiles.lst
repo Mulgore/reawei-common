@@ -1,9 +1,13 @@
-cn/reawei/utils/HttpUtils.class
-cn/reawei/utils/DateUtil.class
+cn/reawei/page/OrderBy.class
+cn/reawei/page/Result.class
 cn/reawei/utils/XmlUtil.class
-cn/reawei/enums/BaiDu.class
 cn/reawei/utils/RequestUtil.class
 cn/reawei/utils/MathUtil.class
+cn/reawei/utils/StringUtil.class
+cn/reawei/utils/HttpUtils.class
+cn/reawei/page/Query.class
+cn/reawei/utils/DateUtil.class
+cn/reawei/vo/ResultBean.class
+cn/reawei/enums/BaiDu.class
 cn/reawei/utils/BaiDuUtil.class
 cn/reawei/utils/TypeUtil.class
-cn/reawei/utils/StringUtil.class
