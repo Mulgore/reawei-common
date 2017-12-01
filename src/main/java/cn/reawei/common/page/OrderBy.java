@@ -1,4 +1,4 @@
-package cn.reawei.page;
+package cn.reawei.common.page;
 
 import org.apache.commons.lang3.StringUtils;
 

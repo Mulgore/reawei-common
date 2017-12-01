@@ -1,4 +1,4 @@
-package cn.reawei.utils;
+package cn.reawei.common.utils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;

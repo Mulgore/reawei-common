@@ -1,4 +1,4 @@
-package cn.reawei.vo;
+package cn.reawei.common.vo;
 
 import java.io.Serializable;
 

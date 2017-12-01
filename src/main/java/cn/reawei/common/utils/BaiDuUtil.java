@@ -1,6 +1,6 @@
-package cn.reawei.utils;
+package cn.reawei.common.utils;
 
-import cn.reawei.enums.BaiDu;
+import cn.reawei.common.enums.BaiDu;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 

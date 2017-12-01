@@ -1,4 +1,4 @@
-package cn.reawei.enums;
+package cn.reawei.common.enums;
 
 
 /**

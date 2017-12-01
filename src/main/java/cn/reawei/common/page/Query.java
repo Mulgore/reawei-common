@@ -1,4 +1,4 @@
-package cn.reawei.page;
+package cn.reawei.common.page;
 
 
 import java.io.Serializable;

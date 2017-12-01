@@ -1,4 +1,4 @@
-package cn.reawei.utils;
+package cn.reawei.common.utils;
 
 
 import org.slf4j.Logger;
