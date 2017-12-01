@@ -1,13 +1,16 @@
 /Users/xingwu/workspace/reawei-common/src/main/java/cn/reawei/common/utils/MathUtil.java
+/Users/xingwu/workspace/reawei-common/src/main/java/cn/reawei/common/utils/WeChatUtil.java
 /Users/xingwu/workspace/reawei-common/src/main/java/cn/reawei/common/utils/BaiDuUtil.java
 /Users/xingwu/workspace/reawei-common/src/main/java/cn/reawei/common/utils/HttpUtils.java
 /Users/xingwu/workspace/reawei-common/src/main/java/cn/reawei/common/utils/XmlUtil.java
 /Users/xingwu/workspace/reawei-common/src/main/java/cn/reawei/common/enums/BaiDu.java
 /Users/xingwu/workspace/reawei-common/src/main/java/cn/reawei/common/utils/StringUtil.java
+/Users/xingwu/workspace/reawei-common/src/main/java/cn/reawei/common/utils/IpAddressUtil.java
 /Users/xingwu/workspace/reawei-common/src/main/java/cn/reawei/common/vo/ResultBean.java
 /Users/xingwu/workspace/reawei-common/src/main/java/cn/reawei/common/page/Query.java
 /Users/xingwu/workspace/reawei-common/src/main/java/cn/reawei/common/utils/DateUtil.java
 /Users/xingwu/workspace/reawei-common/src/main/java/cn/reawei/common/page/Result.java
+/Users/xingwu/workspace/reawei-common/src/main/java/cn/reawei/common/enums/HttpMethods.java
 /Users/xingwu/workspace/reawei-common/src/main/java/cn/reawei/common/utils/TypeUtil.java
 /Users/xingwu/workspace/reawei-common/src/main/java/cn/reawei/common/utils/RequestUtil.java
 /Users/xingwu/workspace/reawei-common/src/main/java/cn/reawei/common/page/OrderBy.java

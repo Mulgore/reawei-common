@@ -30,7 +30,7 @@ public class WeChatUtil {
         params.put("grant_type", "client_credential");
         params.put("appid", APPID);
         params.put("secret", SECRET);
-        String result =HttpUtils.get(requestUrl, null, null, params, false);
+        String result =HttpUtils.get(requestUrl, "utf-8", null, params, true);
 //        HttpRequestUtils.httpGet(requestUrl + params);
         String access_token = JSONObject.parseObject(result).getString("access_token");
         requestUrl = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?";
@@ -39,7 +39,7 @@ public class WeChatUtil {
         params2.put("type", "jsapi");
 //        params = "access_token=" + access_token + "&type=jsapi";
 //        result = HttpRequestUtils.httpGet(requestUrl + params);
-        result =HttpUtils.get(requestUrl, null, null, params, false);
+        result =HttpUtils.get(requestUrl, "utf-8", null, params, true);
         String jsapi_ticket = JSONObject.parseObject(result).getString("ticket");
         int activeTime = Integer.parseInt(JSONObject.parseObject(result).getString("expires_in"));
         return jsapi_ticket;
