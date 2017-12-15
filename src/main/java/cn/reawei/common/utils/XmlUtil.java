@@ -19,8 +19,8 @@ public class XmlUtil {
     /**
      * xml转json字符串 注意:路径和字符串二传一另外一个传null<br>
      * 方 法 名：xmlToJson <br>
-     * 创 建 人：h.j <br>
-     * 创建时间：2017年5月10日 上午10:48:26 <br>
+     * 创 建 人：xingwu<br>
+     * 创建时间：2017年12月15日 上午10:48:26 <br>
      * 修 改 人： <br>
      * 修改日期： <br>
      *
@@ -61,8 +61,8 @@ public class XmlUtil {
     /**
      * json转xml<br>
      * 方 法 名：jsonToXml <br>
-     * 创 建 人：h.j<br>
-     * 创建时间：2017年5月10日 上午11:09:26 <br>
+     * 创 建 人：xingwu<br>
+     * 创建时间：2017年12月15日 上午10:48:26 <br>
      * 修 改 人： <br>
      * 修改日期： <br>
      *
@@ -85,8 +85,8 @@ public class XmlUtil {
     /**
      * json转str<br>
      * 方 法 名：jsonToXmlstr <br>
-     * 创 建 人：h.j <br>
-     * 创建时间：2017年5月10日 下午12:02:17 <br>
+     * 创 建 人：xingwu<br>
+     * 创建时间：2017年12月15日 上午10:48:26 <br>
      * 修 改 人： <br>
      * 修改日期： <br>
      *
