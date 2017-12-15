@@ -39,10 +39,24 @@ public class StringReplaceUtil {
         return builder.toString();
     }
 
+    /**
+     * 姓名替换***
+     */
+    public static String realName(String item) {
+        builder = new StringBuilder();
+        builder.append(item.substring(0, 1));
+        builder.append("*");
+        if (item.length() > 2) {
+            builder.append(item.substring(item.length() - 1, item.length()));
+        }
+        return builder.toString();
+    }
+
     public static void main(String[] args) {
         System.out.println(bankCard("123456789011121314"));
         System.out.println(mobile("18649000000"));
         System.out.println(iDCard("350628168903276312"));
+        System.out.println(realName("星武"));
     }
 
 }
