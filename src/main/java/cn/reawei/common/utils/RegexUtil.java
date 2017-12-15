@@ -3,7 +3,9 @@ package cn.reawei.common.utils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+/**
+ * 正则匹配
+ */
 public class RegexUtil {
 
     /**
