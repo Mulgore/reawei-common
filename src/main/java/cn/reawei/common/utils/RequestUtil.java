@@ -21,85 +21,28 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * 发送一个HTTP请求
+ */
 public class RequestUtil {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Integer INDEX = 0;
 
-    private static HttpClient clientHTTP;
-
-    public String send(String url, HttpMethods httpMethod, Map<String, String> params,
-                       Header[] headers, String encoding) throws Exception {
-        String body;
-        try {
-            //创建请求对象
-            HttpRequestBase request = getRequest(url, httpMethod);
-            //设置header信息
-            request.setHeaders(headers);
-            //判断是否支持设置entity(仅HttpPost、HttpPut、HttpPatch支持)
-            if (HttpEntityEnclosingRequestBase.class.isAssignableFrom(request.getClass())) {
-                //装填参数
-                if (params != null) {
-                    List<NameValuePair> paramList = new ArrayList<>();
-                    for (String key : params.keySet()) {
-                        paramList.add(new BasicNameValuePair(key, params.get(key)));
-                    }
-                    //设置参数到请求对象中
-                    ((HttpEntityEnclosingRequestBase) request).setEntity(new UrlEncodedFormEntity(paramList, encoding));
-                }
-            } else {
-                int idx = url.indexOf("?");
-                logger.debug("请求地址：" + url.substring(0, (idx > 0 ? idx - 1 : url.length() - 1)));
-                if (idx > 0) {
-                    logger.debug("请求参数：" + url.substring(idx + 1));
-                }
-            }
-            //调用发送请求
-        } catch (UnsupportedEncodingException e) {
-            throw new Exception(e);
-        }
-        return null;
-    }
-
-    private static HttpRequestBase getRequest(String url, HttpMethods method) {
-        HttpRequestBase request;
-        switch (method.getMethod()) {
-            case "GET":
-                request = new HttpGet(url);
-                break;
-            case "POST":
-                request = new HttpPost(url);
-                break;
-            case "HEAD":
-                request = new HttpHead(url);
-                break;
-            case "PUT":
-                request = new HttpPut(url);
-                break;
-            case "DELETE":
-                request = new HttpDelete(url);
-                break;
-            case "TRACE":
-                request = new HttpTrace(url);
-                break;
-            case "PATCH":
-                request = new HttpPatch(url);
-                break;
-            case "OPTIONS":
-                request = new HttpOptions(url);
-                break;
-            default:
-                request = new HttpPost(url);
-                break;
-        }
-        return request;
-    }
-
+    /**
+     * 根据请求的方式返回不同的请求
+     *
+     * @param params  参数
+     * @param url     地址
+     * @param method  请求方式
+     * @param charset 编码格式
+     * @throws Exception
+     */
     private static HttpRequestBase getRequestParams(Map<String, String> params, String url, HttpMethods method, String charset) throws Exception {
         List<NameValuePair> paramList = new ArrayList<>();
         UrlEncodedFormEntity entity;
         switch (method.getMethod()) {
             case "GET":
-                HttpGet httpGet = new HttpGet(url + "?" + paramsToString(params, charset));
-                return httpGet;
+                return new HttpGet(url + "?" + paramsToString(params, charset));
             case "POST":
                 HttpPost httpPost = new HttpPost(url);
                 for (String key : params.keySet()) {
@@ -117,16 +60,23 @@ public class RequestUtil {
                 httpPut.setEntity(entity);
                 return httpPut;
             case "DELETE":
-                HttpDelete httpDelete = new HttpDelete(url);
-                return httpDelete;
+                return new HttpDelete(url);
         }
         return null;
     }
 
+    /**
+     * 发送Http请求
+     *
+     * @param url     请求地址
+     * @param params  请求参数
+     * @param charset 编码格式
+     * @param methods 请求方式
+     * @return 请求返回Response
+     */
     public static String requestSend(String url, Map<String, String> params, String charset, HttpMethods methods) {
         CloseableHttpClient client = HttpClientBuilder.create().build();
         CloseableHttpResponse response;
-        String body = null;
         if (Objects.isNull(charset)) {
             charset = "utf-8";
         }
@@ -135,10 +85,9 @@ public class RequestUtil {
             response = client.execute(request);
             Integer statusCode = response.getStatusLine().getStatusCode();
             response.close();
-            if (!Objects.equals(statusCode, HttpStatus.SC_OK)) {
-                return null;
+            if (Objects.equals(statusCode, HttpStatus.SC_OK)) {
+                return getResponseBodyToString(response);
             }
-            body = getResponseBodyToString(response);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -148,18 +97,25 @@ public class RequestUtil {
                 e.printStackTrace();
             }
         }
-        return body;
+        return null;
     }
 
+    /**
+     * get请求转换请求参数
+     *
+     * @param params  参数Map
+     * @param charset 编码格式
+     * @return 转换后的字符串
+     */
     private static String paramsToString(Map<String, String> params, String charset) {
         if (params == null || params.size() == 0) {
             return null;
         }
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         try {
             int i = 0;
             for (String key : params.keySet()) {
-                if (i == 0) {
+                if (Objects.equals(i, INDEX)) {
                     sb.append(key + "=" + URLEncoder.encode(params.get(key), charset));
                 } else {
                     sb.append("&" + key + "=" + URLEncoder.encode(params.get(key), charset));
@@ -172,6 +128,13 @@ public class RequestUtil {
         return sb.toString();
     }
 
+    /**
+     * 获取Response 返回的内容
+     *
+     * @param response response
+     * @return 内容字符串
+     * @throws Exception 异常
+     */
     private static String getResponseBodyToString(HttpResponse response) throws Exception {
         StringBuilder sb = new StringBuilder();
         HttpEntity httpEntity = response.getEntity();
@@ -189,6 +152,6 @@ public class RequestUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(requestSend("https://www.baidu.com", null, "utf-8", HttpMethods.GET));
+        System.out.println(requestSend("http://api.reawei.cn/api/v1/user", null, "utf-8", HttpMethods.GET));
     }
 }
