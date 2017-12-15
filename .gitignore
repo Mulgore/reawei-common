@@ -14,6 +14,8 @@ target
 # Package Files #
 *.jar
 *.war
+*.sh
+*.iml
 *.ear
 *.zip
 *.tar.gz
