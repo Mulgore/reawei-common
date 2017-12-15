@@ -1,5 +1,6 @@
 cn/reawei/common/utils/WeChatUtil.class
 cn/reawei/common/utils/IpAddressUtil.class
+cn/reawei/common/exception/BaseException.class
 cn/reawei/common/utils/MathUtil.class
 cn/reawei/common/utils/RequestUtil.class
 cn/reawei/common/utils/XmlUtil.class

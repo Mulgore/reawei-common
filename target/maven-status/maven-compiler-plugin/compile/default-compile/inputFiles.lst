@@ -1,6 +1,7 @@
 /Users/xingwu/workspace/reawei-common/src/main/java/cn/reawei/common/utils/MathUtil.java
 /Users/xingwu/workspace/reawei-common/src/main/java/cn/reawei/common/utils/WeChatUtil.java
 /Users/xingwu/workspace/reawei-common/src/main/java/cn/reawei/common/utils/BaiDuUtil.java
+/Users/xingwu/workspace/reawei-common/src/main/java/cn/reawei/common/exception/BaseException.java
 /Users/xingwu/workspace/reawei-common/src/main/java/cn/reawei/common/utils/HttpUtils.java
 /Users/xingwu/workspace/reawei-common/src/main/java/cn/reawei/common/utils/XmlUtil.java
 /Users/xingwu/workspace/reawei-common/src/main/java/cn/reawei/common/enums/BaiDu.java

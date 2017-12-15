@@ -1,6 +1,5 @@
 package cn.reawei.common.utils;
 
-import cn.reawei.common.enums.BaiDu;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
@@ -8,6 +7,11 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.*;
 
+import static cn.reawei.common.enums.BaiDu.BAI_DU_AK;
+
+/**
+ * 百度地图工具类
+ */
 public class BaiDuUtil {
 
     /**
@@ -194,7 +198,7 @@ public class BaiDuUtil {
 //        System.out.println("lat :" + result.get("latitude"));
 //        System.out.println("lon :" + result.get("longitude"));
 
-        Map<String, Object> data = getParkingByAddressOrIp(BaiDu.BAI_DU_AK2.getAk(), null, ip);
+        Map<String, Object> data = getParkingByAddressOrIp(BAI_DU_AK.getAk(), null, ip);
         System.out.println(JSONObject.toJSONString(data));
     }
 

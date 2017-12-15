@@ -10,6 +10,9 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * 日期转换工具类
+ */
 public class DateUtil {
     static Calendar calendar;
     protected static final Logger logger = LoggerFactory.getLogger(DateUtil.class);

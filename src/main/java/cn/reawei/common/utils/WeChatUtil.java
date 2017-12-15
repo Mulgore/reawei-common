@@ -2,20 +2,21 @@ package cn.reawei.common.utils;
 
 import com.alibaba.fastjson.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * 微信开发工具类
+ */
 public class WeChatUtil {
-    private final static String APPID = "jsapi_ticket";
+    private final static String APP_ID = "jsapi_ticket";
     private final static String SECRET = "jsapi_ticket";
 
     public static Map<String, String> getWeChatSign(String url) {
-        String api_ticket = getJsapiTicket();
+        String api_ticket = getApiTicket();
         Map<String, String> ret = sign(api_ticket, url);
         if (!ret.isEmpty()) {
             return ret;
@@ -23,29 +24,33 @@ public class WeChatUtil {
         return null;
     }
 
-    private static String getJsapiTicket() {
+    /**
+     * @return 获取微信签名
+     */
+    private static String getApiTicket() {
         String requestUrl = "https://api.weixin.qq.com/cgi-bin/token";
-//        String params = "grant_type=client_credential&appid=" + appid + "&secret=" + secret + "";
         Map<String, String> params = new HashMap<>();
         params.put("grant_type", "client_credential");
-        params.put("appid", APPID);
+        params.put("appid", APP_ID);
         params.put("secret", SECRET);
-        String result =HttpUtils.get(requestUrl, "utf-8", null, params, true);
-//        HttpRequestUtils.httpGet(requestUrl + params);
+        String result = HttpUtils.get(requestUrl, "utf-8", null, params, true);
         String access_token = JSONObject.parseObject(result).getString("access_token");
         requestUrl = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?";
         Map<String, String> params2 = new HashMap<>();
         params2.put("access_token", access_token);
         params2.put("type", "jsapi");
-//        params = "access_token=" + access_token + "&type=jsapi";
-//        result = HttpRequestUtils.httpGet(requestUrl + params);
-        result =HttpUtils.get(requestUrl, "utf-8", null, params, true);
-        String jsapi_ticket = JSONObject.parseObject(result).getString("ticket");
-        int activeTime = Integer.parseInt(JSONObject.parseObject(result).getString("expires_in"));
-        return jsapi_ticket;
+        result = HttpUtils.get(requestUrl, "utf-8", null, params2, true);
+//        int activeTime = Integer.parseInt(JSONObject.parseObject(result).getString("expires_in"));
+        return JSONObject.parseObject(result).getString("ticket");
     }
 
-    private static Map<String, String> sign(String jsapi_ticket, String url) {
+    /**
+     * 解析微信签名
+     *
+     * @param apiTicket 微信签名
+     * @param url 请求地址
+     */
+    private static Map<String, String> sign(String apiTicket, String url) {
         Map<String, String> ret = new HashMap<>();
         String nonce_str = create_nonce_str();
         String timestamp = create_timestamp();
@@ -53,7 +58,7 @@ public class WeChatUtil {
         String signature = "";
 
         //注意这里参数名必须全部小写，且必须有序
-        string1 = "jsapi_ticket=" + jsapi_ticket +
+        string1 = "jsapi_ticket=" + apiTicket +
                 "&noncestr=" + nonce_str +
                 "&timestamp=" + timestamp +
                 "&url=" + url;
@@ -62,14 +67,12 @@ public class WeChatUtil {
             crypt.reset();
             crypt.update(string1.getBytes("UTF-8"));
             signature = byteToHex(crypt.digest());
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         ret.put("url", url);
-        ret.put("jsapi_ticket", jsapi_ticket);
+        ret.put("jsapi_ticket", apiTicket);
         ret.put("nonceStr", nonce_str);
         ret.put("timestamp", timestamp);
         ret.put("signature", signature);
@@ -77,6 +80,10 @@ public class WeChatUtil {
         return ret;
     }
 
+    /**
+     * 加密
+     * @param hash 字节
+     */
     private static String byteToHex(final byte[] hash) {
         Formatter formatter = new Formatter();
         for (byte b : hash) {
@@ -87,25 +94,20 @@ public class WeChatUtil {
         return result;
     }
 
+    /**
+     * 获取时间戳
+     * @return 时间戳
+     */
     private static String create_nonce_str() {
         return UUID.randomUUID().toString();
     }
 
+    /**
+     * 获取时间戳
+     * @return 时间戳
+     */
     private static String create_timestamp() {
         return Long.toString(System.currentTimeMillis() / 1000);
     }
 
-    public static void main(String[] args) {
-        String jsapi_ticket = "jsapi_ticket";
-
-        // 注意 URL 一定要动态获取，不能 hardcode
-        String url = "http://example.com";
-//        Map<String, String> ret = sign(jsapi_ticket, url);
-        Map<String, String> ret = getWeChatSign(url);
-        for (Map.Entry entry : ret.entrySet()) {
-            System.out.println(entry.getKey() + ", " + entry.getValue());
-        }
-    }
-
-    ;
 }
