@@ -1,6 +1,7 @@
 package cn.reawei.common.utils;
 
 import cn.reawei.common.enums.HttpMethods;
+import com.sun.deploy.net.HttpDownloadListener;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.http.*;
 import org.apache.http.client.HttpClient;
@@ -27,6 +28,7 @@ import java.util.Objects;
 public class RequestUtil {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     private static final Integer INDEX = 0;
+
 
     /**
      * 根据请求的方式返回不同的请求

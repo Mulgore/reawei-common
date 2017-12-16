@@ -76,6 +76,12 @@ public class DateUtil {
         return c.get(1);
     }
 
+    public static String getCurrentTime(String format){
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        Date date = new Date();
+        return sdf.format(date);
+    }
+
     public static String MonthToStr(Date date) {
         return DateToStr(date, "MM");
     }
