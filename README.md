@@ -19,6 +19,9 @@
 -   Excel导入、导出工具类
 -   随机电话、姓名、日期，邮箱工具类
 -   MD5加密工具类
+-   文件工具类
+-   ZIP工具类
+-   Cookie工具类
 
 ### 安装Maven
 在项目的pom.xml的dependencies中加入以下内容:
