@@ -15,3 +15,16 @@
 -   IP地址工具类
 -   身份证，电话，银行卡账号隐藏*号工具类
 
+### 安装Maven
+在项目的pom.xml的dependencies中加入以下内容:
+
+```xml
+<dependency>
+    <groupId>cn.reawei.common</groupId>
+    <artifactId>reawei-common</artifactId>
+    <version>1.0-SNAPSHOT</version>
+</dependency>
+```
+### Maven仓库地址 
+
+[Maven仓库地址](http://maven.reawei.cn/repository/maven-public/)
