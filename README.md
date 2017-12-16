@@ -1,4 +1,4 @@
-# reawei
+# Reawei
 
 [![Version](https://img.shields.io/badge/version-1.0.0-brightgreen.svg)]()
 [![JDK 1.8](https://img.shields.io/badge/JDK-1.8-green.svg "JDK 1.8")]()
