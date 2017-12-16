@@ -1,5 +1,7 @@
-# reawei-common
+# reawei
 
+[![Version](https://img.shields.io/badge/version-1.0.0-brightgreen.svg)]()
+[![JDK 1.8](https://img.shields.io/badge/JDK-1.8-green.svg "JDK 1.8")]()
 ## 后端开发工具类集合
 
 -   百度开发工具类
