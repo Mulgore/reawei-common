@@ -224,8 +224,4 @@ public class RandomUtil {
         }
         return sb.toString();
     }
-
-    public static void main(String[] args) {
-        System.out.println(getDate(2017, 2017));
-    }
 }
