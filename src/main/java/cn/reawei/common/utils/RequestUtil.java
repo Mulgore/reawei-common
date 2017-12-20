@@ -1,19 +1,13 @@
 package cn.reawei.common.utils;
 
 import cn.reawei.common.enums.HttpMethods;
-import com.sun.deploy.net.HttpDownloadListener;
-import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.http.*;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.*;
 import org.apache.http.entity.BufferedHttpEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.net.URLEncoder;
@@ -26,7 +20,6 @@ import java.util.Objects;
  * 发送一个HTTP请求
  */
 public class RequestUtil {
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
     private static final Integer INDEX = 0;
 
 
