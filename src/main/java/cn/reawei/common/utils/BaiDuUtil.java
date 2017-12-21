@@ -198,7 +198,7 @@ public class BaiDuUtil {
 //        System.out.println("lat :" + result.get("latitude"));
 //        System.out.println("lon :" + result.get("longitude"));
 
-        Map<String, Object> data = getParkingByAddressOrIp(BAI_DU_AK.getAk(), null, ip);
+        Map<String, Object> data = getParkingByAddressOrIp(BAI_DU_AK.key, null, ip);
         System.out.println(JSONObject.toJSONString(data));
     }
 

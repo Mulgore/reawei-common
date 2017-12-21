@@ -82,6 +82,14 @@
             <version>3.17</version>
         </dependency>
         <!-- poi start -->
+
+        <!-- ocr start -->
+        <dependency>
+            <groupId>com.baidu.aip</groupId>
+            <artifactId>java-sdk</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+        <!-- ocr start -->
     </dependencies>
 
     <distributionManagement>
