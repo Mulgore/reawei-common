@@ -2,7 +2,6 @@ package cn.reawei.common.utils;
 
 import cn.reawei.common.enums.OCRErrorCode;
 import cn.reawei.common.vo.ResultBean;
-import com.baidu.aip.imageclassify.AipImageClassify;
 import com.baidu.aip.ocr.AipOcr;
 import org.json.JSONObject;
 
