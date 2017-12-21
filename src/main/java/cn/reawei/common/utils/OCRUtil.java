@@ -9,16 +9,17 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Objects;
 
-import static cn.reawei.common.enums.BaiDu.BAI_DU_COR_API_KEY;
-import static cn.reawei.common.enums.BaiDu.BAI_DU_COR_APP_ID;
-import static cn.reawei.common.enums.BaiDu.BAI_DU_COR_SECRET_KEY;
+import static cn.reawei.common.enums.BaiDu.BAI_DU_OCR_API_KEY;
+import static cn.reawei.common.enums.BaiDu.BAI_DU_OCR_APP_ID;
+import static cn.reawei.common.enums.BaiDu.BAI_DU_OCR_SECRET_KEY;
+
 
 /**
  * 百度图像识别
  */
 public class OCRUtil {
 
-    private static AipOcr client = new AipOcr(BAI_DU_COR_APP_ID.key, BAI_DU_COR_API_KEY.key, BAI_DU_COR_SECRET_KEY.key);
+    private static AipOcr client = new AipOcr(BAI_DU_OCR_APP_ID.key, BAI_DU_OCR_API_KEY.key, BAI_DU_OCR_SECRET_KEY.key);
 
     /**
      * @param imgPath 本地图片路径
@@ -248,13 +249,13 @@ public class OCRUtil {
 
     public static void main(String[] args) {
 //        String path = "/Users/xingwu/Downloads/bankCard.jpg";
-        AipOcr client = new AipOcr(BAI_DU_COR_APP_ID.key, BAI_DU_COR_API_KEY.key, BAI_DU_COR_SECRET_KEY.key);
+        AipOcr client = new AipOcr(BAI_DU_OCR_APP_ID.key, BAI_DU_OCR_API_KEY.key, BAI_DU_OCR_SECRET_KEY.key);
 //        String path = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513836045361&di=31f5c0f4ac5631712eea1637fc0b1948&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fzhidao%2Fwh%253D450%252C600%2Fsign%3D6665b20d0a24ab18e043e93300cacafb%2F3b292df5e0fe992588323e7b37a85edf8db171da.jpg";
-        String path = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513846741878&di=8d06c6855d73ba0f77f5d07f820c722d&imgtype=0&src=http%3A%2F%2Fwww.yktchina.com%2FFileUpLoad%2F2009%2Fb2d696c0b1b74521b1af0275cd286121.jpg";
-        System.out.println(getBankNumberByImageUrl(path).getMessage());
+//        String path = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513846741878&di=8d06c6855d73ba0f77f5d07f820c722d&imgtype=0&src=http%3A%2F%2Fwww.yktchina.com%2FFileUpLoad%2F2009%2Fb2d696c0b1b74521b1af0275cd286121.jpg";
+//        System.out.println(getBankNumberByImageUrl(path).getMessage());
 //        String urlPath = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513837657145&di=2fd4fb799bb6fba839861ac288e89fa5&imgtype=0&src=http%3A%2F%2Fimg.chinawutong.com%2Fhuiyuan%2Fuppic%2Fs_636054904236200186.png";
-
-//        System.out.println(getIDCard(path, true));
+        String path = "/Users/xingwu/Downloads/card.png";
+        System.out.println(getIDCard(path, true));
     }
 
 }

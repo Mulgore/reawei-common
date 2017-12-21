@@ -6,16 +6,16 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Objects;
 
-import static cn.reawei.common.enums.BaiDu.BAI_DU_COR_API_KEY;
-import static cn.reawei.common.enums.BaiDu.BAI_DU_COR_APP_ID;
-import static cn.reawei.common.enums.BaiDu.BAI_DU_COR_SECRET_KEY;
+import static cn.reawei.common.enums.BaiDu.BAI_DU_OCR_API_KEY;
+import static cn.reawei.common.enums.BaiDu.BAI_DU_OCR_APP_ID;
+import static cn.reawei.common.enums.BaiDu.BAI_DU_OCR_SECRET_KEY;
 
 /**
  * 百度图像分类
  */
 public class ImageClassifyUtil {
 
-    private static AipImageClassify client = new AipImageClassify(BAI_DU_COR_APP_ID.key, BAI_DU_COR_API_KEY.key, BAI_DU_COR_SECRET_KEY.key);
+    private static AipImageClassify client = new AipImageClassify(BAI_DU_OCR_APP_ID.key, BAI_DU_OCR_API_KEY.key, BAI_DU_OCR_SECRET_KEY.key);
 
     /**
      * 动物
