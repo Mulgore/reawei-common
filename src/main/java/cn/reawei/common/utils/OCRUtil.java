@@ -224,6 +224,10 @@ public class OCRUtil {
         return new ResultBean<>("识别异常");
     }
 
+    /**
+     * JSON字符串获取银行卡信息
+     * @param response json字符串
+     */
     private static ResultBean getResultBeanByBankCard(JSONObject response) {
         if (response.isNull("result")) {
             return new ResultBean<>(OCRErrorCode.getMessage(response.getInt("error_code")));
