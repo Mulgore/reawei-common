@@ -23,7 +23,7 @@
 -   ZIP工具类
 -   Cookie工具类
 -   图片工具类
--   百度COR工具类
+-   百度OCR工具类
 
 ### 安装Maven
 在项目的pom.xml的dependencies中加入以下内容:

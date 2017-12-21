@@ -1,6 +1,8 @@
 package cn.reawei.common.utils;
 
+import cn.reawei.common.enums.OCRErrorCode;
 import cn.reawei.common.vo.ResultBean;
+import com.baidu.aip.imageclassify.AipImageClassify;
 import com.baidu.aip.ocr.AipOcr;
 import org.json.JSONObject;
 
@@ -15,7 +17,7 @@ import static cn.reawei.common.enums.BaiDu.BAI_DU_COR_SECRET_KEY;
 /**
  * 百度图像识别
  */
-public class CORUtil {
+public class OCRUtil {
 
     private static AipOcr client = new AipOcr(BAI_DU_COR_APP_ID.key, BAI_DU_COR_API_KEY.key, BAI_DU_COR_SECRET_KEY.key);
 
@@ -114,8 +116,8 @@ public class CORUtil {
      */
     public static ResultBean getIDCardByImageUrl(String imgUrl, boolean isFront) {
         // 调用接口
-        byte[] file = ImageUtil.getImageFromNetByUrl(imgUrl);
         HashMap<String, String> options = new HashMap<>();
+        byte[] file = ImageUtil.getImageFromNetByUrl(imgUrl);
         JSONObject response = new JSONObject();
         if (Objects.nonNull(file)) {
             response = client.idcard(file, isFront, options);
@@ -162,17 +164,6 @@ public class CORUtil {
         return getResultBeanByIDCard(isFront, response);
     }
 
-//    /**
-//     * @param imgUrl  网络图片
-//     */
-//    public static String getAnimalImageUrl(String imgUrl) {
-//        // 调用接口
-//        byte[] file = ImageUtil.getImageFromNetByUrl(imgUrl);
-//        HashMap<String, String> options = new HashMap<>();
-//        JSONObject response = client.(file, isFront, options);
-//        return response.toString();
-//    }
-
     /**
      * 从JSON字符串中获取身份证数据
      *
@@ -181,7 +172,7 @@ public class CORUtil {
      */
     private static ResultBean getResultBeanByIDCard(boolean isFront, JSONObject response) {
         if (response.isNull("image_status")) {
-            return new ResultBean<>("识别失败");
+            return new ResultBean<>(OCRErrorCode.getMessage(response.getInt("error_code")));
         }
         switch (response.getString("image_status")) {
             case "normal":
@@ -236,7 +227,7 @@ public class CORUtil {
 
     private static ResultBean getResultBeanByBankCard(JSONObject response) {
         if (response.isNull("result")) {
-            return new ResultBean<>("识别失败");
+            return new ResultBean<>(OCRErrorCode.getMessage(response.getInt("error_code")));
         }
         JSONObject result = response.getJSONObject("result");
         JSONObject data = new JSONObject();
@@ -255,9 +246,9 @@ public class CORUtil {
     public static void main(String[] args) {
 //        String path = "/Users/xingwu/Downloads/bankCard.jpg";
         AipOcr client = new AipOcr(BAI_DU_COR_APP_ID.key, BAI_DU_COR_API_KEY.key, BAI_DU_COR_SECRET_KEY.key);
-        String path = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513836045361&di=31f5c0f4ac5631712eea1637fc0b1948&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fzhidao%2Fwh%253D450%252C600%2Fsign%3D6665b20d0a24ab18e043e93300cacafb%2F3b292df5e0fe992588323e7b37a85edf8db171da.jpg";
-//        String path = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513846741878&di=8d06c6855d73ba0f77f5d07f820c722d&imgtype=0&src=http%3A%2F%2Fwww.yktchina.com%2FFileUpLoad%2F2009%2Fb2d696c0b1b74521b1af0275cd286121.jpg";
-        System.out.println(getBankNumberByImageUrl(path, client).getData().toString());
+//        String path = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513836045361&di=31f5c0f4ac5631712eea1637fc0b1948&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fzhidao%2Fwh%253D450%252C600%2Fsign%3D6665b20d0a24ab18e043e93300cacafb%2F3b292df5e0fe992588323e7b37a85edf8db171da.jpg";
+        String path = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513846741878&di=8d06c6855d73ba0f77f5d07f820c722d&imgtype=0&src=http%3A%2F%2Fwww.yktchina.com%2FFileUpLoad%2F2009%2Fb2d696c0b1b74521b1af0275cd286121.jpg";
+        System.out.println(getBankNumberByImageUrl(path).getMessage());
 //        String urlPath = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513837657145&di=2fd4fb799bb6fba839861ac288e89fa5&imgtype=0&src=http%3A%2F%2Fimg.chinawutong.com%2Fhuiyuan%2Fuppic%2Fs_636054904236200186.png";
 
 //        System.out.println(getIDCard(path, true));
