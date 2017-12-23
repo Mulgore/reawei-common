@@ -32,7 +32,7 @@
 <dependency>
     <groupId>cn.reawei.common</groupId>
     <artifactId>reawei-common</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
 </dependency>
 ```
 ### Maven仓库地址 
