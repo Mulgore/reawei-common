@@ -447,5 +447,6 @@ public class StringUtil extends StringUtils {
                 + content.substring(content.length() - endNum, content.length());
 
     }
+    
 }
 
