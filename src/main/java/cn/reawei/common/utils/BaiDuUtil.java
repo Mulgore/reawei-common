@@ -198,8 +198,15 @@ public class BaiDuUtil {
 //        System.out.println("lat :" + result.get("latitude"));
 //        System.out.println("lon :" + result.get("longitude"));
 
-        Map<String, Object> data = getParkingByAddressOrIp(BAI_DU_AK.key, null, ip);
-        System.out.println(JSONObject.toJSONString(data));
+//        Map<String, Object> data = getParkingByAddressOrIp(BAI_DU_AK.key, null, ip);
+//        System.out.println(JSONObject.toJSONString(data));
+
+        Map<String, String> result = new HashMap<>();
+        result.put("aa", "11");
+        System.out.println(result.toString());
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("aa", 11);
+        System.out.println(jsonObject.toJSONString());
     }
 
 

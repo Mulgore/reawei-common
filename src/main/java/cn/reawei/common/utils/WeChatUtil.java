@@ -1,12 +1,13 @@
 package cn.reawei.common.utils;
 
 import com.alibaba.fastjson.JSONObject;
+import sun.misc.BASE64Decoder;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 import java.security.MessageDigest;
-import java.util.Formatter;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * 微信开发工具类
@@ -48,7 +49,7 @@ public class WeChatUtil {
      * 解析微信签名
      *
      * @param apiTicket 微信签名
-     * @param url 请求地址
+     * @param url       请求地址
      */
     private static Map<String, String> sign(String apiTicket, String url) {
         Map<String, String> ret = new HashMap<>();
@@ -82,6 +83,7 @@ public class WeChatUtil {
 
     /**
      * 加密
+     *
      * @param hash 字节
      */
     private static String byteToHex(final byte[] hash) {
@@ -96,6 +98,7 @@ public class WeChatUtil {
 
     /**
      * 获取时间戳
+     *
      * @return 时间戳
      */
     private static String create_nonce_str() {
@@ -104,10 +107,33 @@ public class WeChatUtil {
 
     /**
      * 获取时间戳
+     *
      * @return 时间戳
      */
     private static String create_timestamp() {
         return Long.toString(System.currentTimeMillis() / 1000);
     }
+//
+//    private static String decrypt(String text, String aesKey, String ivKey) throws Exception {
+//        byte[] original;
+//        try {
+//            // 设置解密模式为AES的CBC模式
+//            Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
+//            SecretKeySpec key_spec = new SecretKeySpec(aesKey.getBytes(), "AES");
+//            IvParameterSpec iv = new IvParameterSpec(ivKey.getBytes(), 0, 24);
+//            cipher.init(Cipher.DECRYPT_MODE, key_spec, iv);
+//
+//            // 使用BASE64对密文进行解码
+//            byte[] encrypted = new BASE64Decoder().decodeBuffer(text);
+//            // 解密
+//            original = cipher.doFinal(encrypted);
+//            System.out.println(original);
+//            return new String(original, "UTF-8");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
+    
 }

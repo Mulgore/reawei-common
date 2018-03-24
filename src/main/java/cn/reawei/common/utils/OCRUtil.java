@@ -165,6 +165,24 @@ public class OCRUtil {
     }
 
     /**
+     * @param imgUrl  网络图片
+     */
+    public static String getImageUrl(String imgUrl) {
+        // 调用接口
+        HashMap<String, String> options = new HashMap<>();
+        options.put("language_type", "CHN_ENG");
+        options.put("detect_direction", "true");
+        options.put("detect_language", "true");
+        options.put("probability", "true");
+        byte[] file = ImageUtil.getImageFromNetByUrl(imgUrl);
+        JSONObject response = new JSONObject();
+        if (Objects.nonNull(file)) {
+            response = client.basicAccurateGeneral(file, options);
+        }
+        return response.toString();
+    }
+
+    /**
      * 从JSON字符串中获取身份证数据
      *
      * @param isFront  正反面
@@ -254,8 +272,10 @@ public class OCRUtil {
 //        String path = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513846741878&di=8d06c6855d73ba0f77f5d07f820c722d&imgtype=0&src=http%3A%2F%2Fwww.yktchina.com%2FFileUpLoad%2F2009%2Fb2d696c0b1b74521b1af0275cd286121.jpg";
 //        System.out.println(getBankNumberByImageUrl(path).getMessage());
 //        String urlPath = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513837657145&di=2fd4fb799bb6fba839861ac288e89fa5&imgtype=0&src=http%3A%2F%2Fimg.chinawutong.com%2Fhuiyuan%2Fuppic%2Fs_636054904236200186.png";
-        String path = "/Users/xingwu/Downloads/card.png";
-        System.out.println(getIDCard(path, true));
+//        String path = "/Users/xingwu/Downloads/card.png";
+//        System.out.println(getIDCard(path, true));
+        String imgPath = "http://msas.mail.163.com/msas/vcode/getvcode.do?uid=wangyu19930107@163.com";
+        System.out.println(getImageUrl(imgPath));
     }
 
 }
